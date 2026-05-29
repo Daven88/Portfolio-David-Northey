@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>David Northey Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="./assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		
+		<!-- Sidebar -->
+		<section id="sidebar">
+			<div class="inner">
+				<span class="image avatar">
+					<img src="./images/Head_shot_pic.JPG" alt="Profile Image" class="profile-pic" />
+				</span>
+				<nav>
+					<ul>
+						<li><a href="#intro">Welcome</a></li>
+						<li><a href="#one">Projects</a></li>
+						<li><a href="#two">What I do</a></li>
+						<li><a href="#three">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</section>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Intro -->
+			<section id="intro" class="wrapper style1 fullscreen fade-up">
+				<div class="inner">
+					<h1>David Northey</h1>
+					<p>
+						Data Engineer &amp; Data Scientist based in Melbourne. I build production-grade data pipelines and apply machine learning to real operational problems — currently as a Master Data Associate at Ego Pharmaceuticals, where I work across SAP data governance, S/4HANA migration, and data quality in a regulated GMP environment.
+						<br><br>
+						My engineering stack centres on Python, SQL, GCP (BigQuery), dbt, and Apache Airflow. On the ML side I have hands-on experience across classification, NLP, and time-series forecasting, with a Master of Data Science from James Cook University.
+						<br><br>
+						Eight years in pharmaceutical manufacturing gives me something most data engineers don't have: a deep instinct for data quality, traceability, and what goes wrong when governance breaks down.
+					</p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">View projects</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- One -->
+			<section id="one" class="wrapper style2 spotlights">
+
+				<section>
+					<a href="https://github.com/Daven88/rba-pipeline" class="image" target="_blank">
+						<img src="./images/neuralnet2.png" alt="RBA Interest Rate Pipeline" data-position="center center" />
+					</a>
+					<div class="content">
+						<div class="inner">
+							<h2>RBA Interest Rate Pipeline</h2>
+							<p>End-to-end batch and streaming pipeline on GCP for Australian interest rate data. Ingests macro-economic indicators from the World Bank API, transforms through a Bronze→Silver→Gold Medallion architecture using dbt, orchestrates with Apache Airflow (Docker), and applies machine learning to predict the direction of RBA rate decisions. Extended with a GCP Pub/Sub streaming module for real-time event ingestion alongside the batch pipeline.</p>
+							<p><strong>Stack:</strong> Python, SQL, dbt, Apache Airflow, Docker, GCS, BigQuery, Pub/Sub, scikit-learn, Looker Studio</p>
+							<ul class="actions">
+								<li><a href="https://github.com/Daven88/rba-pipeline" class="button" target="_blank">View on GitHub</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<a href="./machine-learning/using-quanitified-voice-patterns-to-diagnose-parkinsons-disease/supervised-and-unsupervised-learning-parkingson-disease.pdf" class="image">
+						<img src="./images/PCA.png" alt="Parkinson's Disease Classification" />
+					</a>
+					<div class="content">
+						<div class="inner">
+							<h2>Using Quantified Voice Patterns to Diagnose Parkinson's Disease</h2>
+							<p>End-to-end ML pipeline on biomedical voice data for Parkinson's disease classification using both supervised and unsupervised learning algorithms. Includes feature engineering, dimensionality reduction (PCA), and model evaluation across multiple classifiers.</p>
+							<ul class="actions">
+								<li><a href="./machine-learning/using-quanitified-voice-patterns-to-diagnose-parkinsons-disease/supervised-and-unsupervised-learning-parkingson-disease.pdf" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<a href="./machine-learning/sentiment-analysis-of-book-reviews/NLPandwebscraping.pdf" class="image">
+						<img src="./images/NLP.png" alt="NLP Book Reviews" data-position="top center" />
+					</a>
+					<div class="content">
+						<div class="inner">
+							<h2>Webscraping and NLP for Analysing Autism-Related Book Reviews</h2>
+							<p>Applied Natural Language Processing and machine learning to web-scraped book reviews related to Autism. Identifies sentiment patterns, builds a classification model, and surfaces insights into public perception using VADER and feature engineering techniques.</p>
+							<ul class="actions">
+								<li><a href="./machine-learning/sentiment-analysis-of-book-reviews/NLPandwebscraping.pdf" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<a href="./machine-learning/predicting-unemployment-rates-in-australia-with-machine-learning/Neuralnetworks.pdf" class="image">
+						<img src="./images/neuralnet2.png" alt="Unemployment Forecasting" data-position="25% 25%" />
+					</a>
+					<div class="content">
+						<div class="inner">
+							<h2>Forecasting Australia's Unemployment Rate Using Neural Networks and XGBoost</h2>
+							<p>Time-series forecasting models using Neural Networks and XGBoost to predict Australian unemployment trends. Addresses challenges including multicollinearity and economic shocks, evaluated against multiple baselines.</p>
+							<ul class="actions">
+								<li><a href="./machine-learning/predicting-unemployment-rates-in-australia-with-machine-learning/Neuralnetworks.pdf" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+			</section>
+
+			<!-- Two -->
+			<section id="two" class="wrapper style3 fade-up">
+				<div class="inner">
+					<h2>What I do</h2>
+					<p>I build reliable data pipelines and apply machine learning to problems that matter. Eight years working in regulated pharmaceutical environments has shaped how I think about data quality, traceability, and building systems that can be trusted.</p>
+					
+					<div class="features">
+						<section>
+							<span class="icon solid major fa-database"></span>
+							<h3>Data Engineering</h3>
+							<p>End-to-end pipeline development using Python, dbt, Apache Airflow, and GCP (BigQuery, Cloud Storage, Pub/Sub). Medallion Architecture, ETL/ELT, star schema design.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-code"></span>
+							<h3>Machine Learning</h3>
+							<p>Classification, regression, time-series forecasting, model evaluation and hyperparameter tuning. scikit-learn, XGBoost, PyTorch.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-comments"></span>
+							<h3>Natural Language Processing</h3>
+							<p>Text preprocessing, sentiment analysis (VADER/NLTK), topic modelling, and web scraping for unstructured data pipelines.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-chart-bar"></span>
+							<h3>Data Visualisation & BI</h3>
+							<p>Power BI dashboards, Looker Studio, Matplotlib, Seaborn. Translating analytical outputs into clear, decision-ready reporting.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-terminal"></span>
+							<h3>Tools & Languages</h3>
+							<p>Python, SQL, R, dbt, Apache Airflow, Docker, GCP, BigQuery, Pub/Sub, Git, SAP, Power BI, scikit-learn, Jupyter.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-flask"></span>
+							<h3>Domain Knowledge</h3>
+							<p>8+ years in GMP-regulated pharmaceutical manufacturing. Data governance, audit traceability, SAP master data management, and compliance-grade documentation standards.</p>
+						</section>
+					</div>
+
+					<ul class="actions">
+						<li><a href="https://github.com/Daven88" class="button" target="_blank">View GitHub</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Three -->
+			<section id="three" class="wrapper style1 fade-up">
+				<div class="inner">
+					<h2>Get in touch</h2>
+					<p>Interested in working together or learning more about my projects? Reach out via email or the contact form — I'll get back to you as soon as possible.</p>
+					
+					<div class="split style1">
+						<section>
+							<form method="post" action="https://formspree.io/f/xzzgbzzq">
+								<div class="fields">
+									<div class="field half">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field half">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="5"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><button type="submit" class="button submit">Send Message</button></li>
+								</ul>
+							</form>
+						</section>
+
+						<section>
+							<ul class="contact">
+								<li>
+									<h3>Location</h3>
+									<span>Melbourne,<br />Victoria,<br />Australia</span>
+								</li>
+								<li>
+									<h3>Email</h3>
+									<a href="mailto:dnorthey88@gmail.com">dnorthey88@gmail.com</a>
+								</li>
+								<li>
+									<h3>Social</h3>
+									<ul class="icons">
+										<li><a href="https://github.com/daven88" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+										<li><a href="https://www.linkedin.com/in/david-northey-b32090139/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; David Northey 2026. All rights reserved.</li>
+					<li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/jquery.scrollex.min.js"></script>
+		<script src="./assets/js/jquery.scrolly.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/main.js"></script>
+
+	</body>
+</html>
