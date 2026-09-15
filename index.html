@@ -1,24 +1,28 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>David Northey Portfolio</title>
+		<title>David Northey — Data &amp; Analytics Engineering</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="David Northey — data and analytics engineer in Melbourne. Production pipelines on GCP with BigQuery, dbt and Cloud Run, built on eight years in regulated pharmaceutical manufacturing." />
 		<link rel="stylesheet" href="./assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="./assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-		
+
 		<!-- Sidebar -->
 		<section id="sidebar">
 			<div class="inner">
 				<span class="image avatar">
-					<img src="./images/Head_shot_pic.JPG" alt="Profile Image" class="profile-pic" />
+					<img src="./images/Head_shot_pic.JPG" alt="David Northey" class="profile-pic" />
 				</span>
 				<nav>
 					<ul>
 						<li><a href="#intro">Welcome</a></li>
-						<li><a href="#one">Projects</a></li>
+						<li><a href="#one">RBA Pipeline</a></li>
+						<li><a href="#projects">Minutes Engine</a></li>
+						<li><a href="#warehouse">Data Warehouse</a></li>
+						<li><a href="#coursework">Coursework</a></li>
 						<li><a href="#two">What I do</a></li>
 						<li><a href="#three">Contact</a></li>
 					</ul>
@@ -32,25 +36,86 @@
 			<!-- Intro -->
 			<section id="intro" class="wrapper style1 fullscreen fade-up">
 				<div class="inner">
-					<h1>David Northey: Data Science Portfolio</h1>
+					<h1>David Northey: Data &amp; Analytics Engineering</h1>
 					<p>
-						I’m pleased to share my portfolio developed as part of my Master of Data Science, which reflects my interest in applying analytical techniques to real-world challenges.
+						I build data pipelines and warehouse models that people actually run against. Eight years in regulated pharmaceutical manufacturing — analytical chemistry through to QC supervision and master data — taught me what happens when data is wrong, and that has shaped how I engineer it.
 						<br><br>
-						With a background in pharmaceutical science, I bring a domain-informed perspective to data exploration, machine learning, and predictive modeling. The projects featured demonstrate practical experience across areas including natural language processing, classification, and data visualisation.
+						My current work is data engineering on Google Cloud: batch ingestion into BigQuery, medallion and dimensional layers managed with dbt, containerised jobs on Cloud Run, data tests that catch bad data before it reaches a dashboard, and unit tests that gate deployment in CI. I care about pipelines that are idempotent, documented, and cheap to operate.
 						<br><br>
-						This work represents my commitment to continuous learning and professional growth in the data science field.
+						Based in Melbourne. Master of Data Science (James Cook University).
 					</p>
 					<ul class="actions">
-						<li><a href="#one" class="button scrolly">Learn more</a></li>
+						<li><a href="#one" class="button scrolly">See the work</a></li>
 					</ul>
 				</div>
 			</section>
 
-			<!-- One -->
-			<section id="one" class="wrapper style2 spotlights">
+			<!-- One: Flagship project, full width so the diagram is readable -->
+			<section id="one" class="wrapper style2 fade-up">
+				<div class="inner">
+					<h2>RBA Interest Rate Pipeline</h2>
+					<p>An end-to-end batch pipeline that ingests Reserve Bank of Australia rate decisions and six macroeconomic series into BigQuery through bronze, silver and gold layers, with dbt managing the transformations and 57 data tests covering every layer. Classification models predict the direction of the next rate move, and a Streamlit dashboard on Cloud Run surfaces that prediction alongside current economic conditions.</p>
+
+					<a href="https://github.com/Daven88/rba-pipeline" class="image fit">
+						<img src="./images/rba-pipeline.png" alt="RBA rate pipeline architecture — RBA statistical tables through bronze, silver and gold layers on GCP" />
+					</a>
+
+					<p>Originally orchestrated with Airflow in Docker, then migrated to a containerised Cloud Run Job triggered by Cloud Scheduler and gated on the RBA meeting calendar — managed Airflow would have cost roughly $450 per run for a pipeline that runs eight times a year. There are no service account keys anywhere in the system.</p>
+					<p><strong>Python · BigQuery · dbt · Cloud Run · Cloud Scheduler · Docker · scikit-learn</strong></p>
+					<ul class="actions">
+						<li><a href="https://github.com/Daven88/rba-pipeline" class="button">View on GitHub</a></li>
+						<li><a href="https://rba-dashboard-213888644789.australia-southeast1.run.app" class="button">Live dashboard</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Two: Minutes similarity engine, full width -->
+			<section id="projects" class="wrapper style1 fade-up">
+				<div class="inner">
+					<h2>RBA Board Minutes Similarity Engine</h2>
+					<p>A retrieval system over two decades of RBA board meeting minutes. The corpus is chunked and embedded, with BigQuery serving as both storage and the retrieval layer — no separate vector database, which keeps the operating surface small at this corpus size. Given the current economic setting, it surfaces the historically comparable meetings and the distances between them, excluding the most recent eighteen months so the result is a genuine historical analogue rather than an echo of the last few decisions.</p>
+
+					<a href="https://github.com/Daven88/rba-rag" class="image fit" style="max-width: 32em; margin-left: auto; margin-right: auto;">
+						<img src="./images/rba-minutes.png" alt="Retrieval routes across RBA board minutes" />
+					</a>
+
+					<p>Deployed by GitHub Actions on every push to main: pytest runs first and the build is gated on it, then the image is pushed and released to Cloud Run. Authentication to GCP uses Workload Identity Federation, so no service account key ever leaves the repository.</p>
+					<p><strong>Python · BigQuery vector search · FastAPI · Cloud Run · GitHub Actions · pytest · Workload Identity Federation</strong></p>
+					<ul class="actions">
+						<li><a href="https://github.com/Daven88/rba-rag" class="button">View on GitHub</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Three: Retail data warehouse, full width -->
+			<section id="warehouse" class="wrapper style3 fade-up">
+				<div class="inner">
+					<h2>Retail Data Warehouse and Star Schema</h2>
+					<p>A bronze–silver–gold warehouse built in T-SQL over a retail dataset, with stored ETL procedures moving data through each layer into a star schema designed for analytical querying. Extended with VADER sentiment scoring over customer reviews and product descriptions, surfaced through a Power BI dashboard alongside sales and product performance metrics.</p>
+
+					<a href="https://github.com/Daven88/sql-retail-store-independent-project-data-warehouse" class="image fit">
+						<img src="./images/medallion-warehouse.png" alt="Bronze, silver and gold layers of the retail data warehouse" />
+					</a>
+
+					<p><strong>T-SQL · Medallion architecture · Star schema · Python (VADER/NLTK) · Power BI</strong></p>
+					<ul class="actions">
+						<li><a href="https://github.com/Daven88/sql-retail-store-independent-project-data-warehouse" class="button">View on GitHub</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Coursework -->
+			<section id="coursework" class="wrapper style1 fade-up">
+				<div class="inner">
+					<h2>Machine Learning Coursework</h2>
+					<p>Written up as reports during my Master of Data Science. Each covers the full path from exploration through to model evaluation.</p>
+				</div>
+			</section>
+
+			<section class="wrapper style2 spotlights">
 				<section>
 					<a href="./machine-learning/using-quanitified-voice-patterns-to-diagnose-parkinsons-disease/supervised-and-unsupervised-learning-parkingson-disease.pdf" class="image">
-						<img src="./images/PCA.png" alt="Project Image Description" />
+						<img src="./images/PCA.png" alt="Principal component analysis of voice measurements" />
 					</a>
 					<div class="content">
 						<div class="inner">
@@ -65,7 +130,7 @@
 
 				<section>
 					<a href="./machine-learning/sentiment-analysis-of-book-reviews/NLPandwebscraping.pdf" class="image">
-						<img src="./images/NLP.png" alt="" data-position="top center" />
+						<img src="./images/NLP.png" alt="Sentiment analysis of book review text" data-position="top center" />
 					</a>
 					<div class="content">
 						<div class="inner">
@@ -80,12 +145,12 @@
 
 				<section>
 					<a href="./machine-learning/predicting-unemployment-rates-in-australia-with-machine-learning/Neuralnetworks.pdf" class="image">
-						<img src="./images/neuralnet2.png" alt="" data-position="25% 25%" />
+						<img src="./images/neuralnet2.png" alt="Neural network unemployment forecast" data-position="25% 25%" />
 					</a>
 					<div class="content">
 						<div class="inner">
-							<h2>Forecasting Australia’s Unemployment Rate Using Neural Networks and XGBoost</h2>
-							<p>This project uses Neural Networks and XGBoost to forecast Australia’s unemployment rate, addressing challenges such as multicollinearity and economic shocks.</p>
+							<h2>Forecasting Australia's Unemployment Rate Using Neural Networks and XGBoost</h2>
+							<p>This project uses Neural Networks and XGBoost to forecast Australia's unemployment rate, addressing challenges such as multicollinearity and economic shocks.</p>
 							<ul class="actions">
 								<li><a href="./machine-learning/predicting-unemployment-rates-in-australia-with-machine-learning/Neuralnetworks.pdf" class="button">Learn more</a></li>
 							</ul>
@@ -97,45 +162,41 @@
 			<!-- Two -->
 			<section id="two" class="wrapper style3 fade-up">
 				<div class="inner">
-					<h2>My Approach</h2>
-					<p>I combine rigorous statistical methods with practical domain expertise to deliver actionable insights. From data cleaning and feature engineering to model building and visualisation, I focus on clarity, reproducibility, and impact.</p>
-					
+					<h2>What I do</h2>
+					<p>I work across the path from raw source to the table an analyst queries — ingestion, modelling, orchestration and the tests that keep it trustworthy.</p>
+
 					<div class="features">
 						<section>
-							<span class="icon solid major fa-code"></span>
-							<h3>Machine Learning</h3>
-							<p>Classification, regression, model evaluation and hyperparameter tuning.</p>
+							<span class="icon solid major fa-database"></span>
+							<h3>Data Engineering</h3>
+							<p>Batch ingestion, medallion architecture, dimensional modelling to Kimball, dbt transformations, orchestration and scheduling.</p>
 						</section>
 						<section>
-							<span class="icon solid major fa-comments"></span>
-							<h3>Natural Language Processing</h3>
-							<p>Text preprocessing, sentiment analysis, topic modeling, and more.</p>
+							<span class="icon solid major fa-cloud"></span>
+							<h3>Cloud &amp; Infrastructure</h3>
+							<p>GCP — BigQuery, Cloud Run, Cloud Scheduler, Artifact Registry, Cloud Storage. Docker, GitHub Actions, Workload Identity Federation and keyless service-account authentication.</p>
 						</section>
 						<section>
 							<span class="icon solid major fa-chart-bar"></span>
-							<h3>Data Visualisation</h3>
-							<p>Matplotlib, Seaborn, Plotly, GGPlot2, Tableau.</p>
+							<h3>Analytics &amp; BI</h3>
+							<p>Advanced SQL, semantic and reporting layers, Power BI, Looker Studio, Streamlit applications for internal users.</p>
 						</section>
 						<section>
-							<span class="icon solid major fa-chart-area"></span>
-							<h3>Statistics and Data Analysis</h3>
-							<p>Hypothesis testing, Bayesian inference, exploratory data analysis.</p>
+							<span class="icon solid major fa-code"></span>
+							<h3>Machine Learning</h3>
+							<p>Classification and forecasting with scikit-learn and XGBoost. Model evaluation, handling class imbalance, NLP and retrieval systems.</p>
 						</section>
 						<section>
 							<span class="icon solid major fa-terminal"></span>
-							<h3>Tools & Languages</h3>
-							<p>Python, R, SQL, Jupyter, Git, Tableau, scikit-learn.</p>
+							<h3>Tools &amp; Languages</h3>
+							<p>Python, SQL, R, Git, VS Code, SAP ECC and SAP BW, Claude Code and the Anthropic SDK.</p>
 						</section>
 						<section>
 							<span class="icon solid major fa-flask"></span>
-							<h3>Domain Knowledge</h3>
-							<p>Pharmaceutical science, regulatory understanding.</p>
+							<h3>Regulated Domain Experience</h3>
+							<p>Eight years in GxP/GMP pharmaceutical manufacturing — data governance, master data, validation and audit requirements.</p>
 						</section>
 					</div>
-
-					<ul class="actions">
-						<li><a href="#" class="button">Learn more</a></li>
-					</ul>
 				</div>
 			</section>
 
@@ -143,8 +204,8 @@
 			<section id="three" class="wrapper style1 fade-up">
 				<div class="inner">
 					<h2>Get in touch</h2>
-					<p>Interested in working together or learning more about my projects? Reach out via email or the contact form — I’ll get back to you as soon as possible.</p>
-					
+					<p>I'm open to data engineering, analytics engineering and data science roles in Melbourne. Happy to talk through any of the projects above, or anything you're building.</p>
+
 					<div class="split style1">
 						<section>
 							<form method="post" action="https://formspree.io/f/xzzgbzzq">
@@ -163,7 +224,7 @@
 									</div>
 								</div>
 								<ul class="actions">
-									<li><button type="submit" class="button submit">Send Message</button></li>
+									<li><button type="submit" class="button submit">Send message</button></li>
 								</ul>
 							</form>
 						</section>
@@ -181,7 +242,7 @@
 								<li>
 									<h3>Social</h3>
 									<ul class="icons">
-										<li><a href="https://github.com/daven88" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+										<li><a href="https://github.com/Daven88" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 										<li><a href="https://www.linkedin.com/in/david-northey-b32090139/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 									</ul>
 								</li>
@@ -197,7 +258,7 @@
 		<footer id="footer" class="wrapper style1-alt">
 			<div class="inner">
 				<ul class="menu">
-					<li>&copy; David Northey 2025. All rights reserved.</li>
+					<li>&copy; David Northey 2026. All rights reserved.</li>
 					<li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</div>
